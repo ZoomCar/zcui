@@ -1,0 +1,11 @@
+{
+  "vue": {
+    "name": "zcui-vue",
+    "description": "Vuejs variant for zcui",
+    "git": {
+      "url": "https://github.com/hamidraza/zcui-vue.git",
+      "branch": "master"
+    }
+  }
+}
+
