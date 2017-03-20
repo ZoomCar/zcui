@@ -12,6 +12,11 @@
   "keywords": [],
   "author": "Hamid Raza <hamid.raza@zoomcar.com>",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/ZoomCar/zcui.git"
+  },
+  "homepage": "https://zoomcar.github.io/zcui/",
   "dependencies": {
     "chalk": "^1.1.3",
     "change-case": "^3.0.1",

@@ -22,7 +22,7 @@ var argv = yargs
   .showHelpOnFail(false, 'Specify --help for available options')
   .version().alias('v', 'version')
   .help().alias('h', 'help')
-  .epilogue('for more information, find our manual at http://zcui.zoomcar.com')
+  .epilogue('for more information, find our manual at https://zoomcar.github.io/zcui/')
   .argv;
 
 // console.log('Data we have: ', argv);
