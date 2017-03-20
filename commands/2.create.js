@@ -9,10 +9,6 @@ exports.builder = yargs => {
     .example('$0 create component Calendar')
     .example('$0 create page Home --layout Default')
     .example('etc...')
-    .commandDir('./create')
-}
-
-exports.handler = argv => {
-  console.log('Create new component', argv);
-}
+    .commandDir('./create');
+};
 
