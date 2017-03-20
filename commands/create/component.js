@@ -31,7 +31,7 @@ exports.handler = argv => {
 
   const componentPath = path.join(componentsDir, name.param);
   if (shell.test('-d', componentPath)) {
-    console.log(chalk.red(`${name.param} component already exits! Please choose some another name!!!`));
+    console.log(`${chalk.bgRed.white(' Error : ')} ${name.param} component already exits! Please choose some another name!!!`);
     shell.exit(1);
   }
   shell.mkdir('-p', componentPath);

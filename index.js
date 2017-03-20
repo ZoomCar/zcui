@@ -4,6 +4,13 @@ const changeCase = require('change-case');
 const m          = require('motivation');
 const fs         = require('fs');
 const yargs      = require('yargs');
+const chalk      = require('chalk');
+const wrap       = require('word-wrap');
+
+const {text, author} = m.get();
+console.log(`${chalk.green.dim(wrap(text, {width: 60, indent: '  '}))}
+  [${chalk.blue.dim(author)}]
+`);
 
 var argv = yargs
   .usage('Usage: $0 <command> [options]')
