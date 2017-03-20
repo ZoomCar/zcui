@@ -4,7 +4,7 @@ const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
 const {evalTemplate} = require('../../helpers/template');
-const emoji = require('../../helpers/emoji.json');
+const logSymbols = require('../../helpers/log-symbols.js');
 
 exports.command  = 'component <name>';
 exports.desc     = 'create new component';
@@ -31,7 +31,7 @@ exports.handler = argv => {
 
   const componentPath = path.join(componentsDir, name.param);
   if (shell.test('-d', componentPath)) {
-    console.log(`${chalk.bgRed.white(' Error : ')} ${name.param} component already exits! Please choose some another name!!!`);
+    console.log(`${logSymbols.error} ${name.param} component already exits! Please choose some another name!!!`);
     shell.exit(1);
   }
   shell.mkdir('-p', componentPath);
@@ -48,6 +48,6 @@ exports.handler = argv => {
     fs.writeFileSync(filePath, fileContent);
   });
 
-  console.log(emoji.white_check_mark, ` ${name.param} Component created`);
+  console.log(logSymbols.success, ` ${name.param} Component created`);
 };
 
