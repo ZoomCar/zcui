@@ -7,8 +7,8 @@ const yargs      = require('yargs');
 const chalk      = require('chalk');
 const wrap       = require('word-wrap');
 
-const {text, author} = m.get();
-console.log(`${chalk.green.dim(wrap(text, {width: 80, indent: '  '}))}
+const {text, author} = m.get() || {};
+if(text && author) console.log(`${chalk.green.dim(wrap(text, {width: 80, indent: '  '}))}
   [${chalk.blue.dim(author)}]
 `);
 
