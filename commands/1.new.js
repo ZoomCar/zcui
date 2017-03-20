@@ -1,7 +1,9 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
-const spinnerFrame = require('elegant-spinner')();
-const logUpdate = require('log-update');
+const ora = require('ora');
+const fs = require('fs');
+const path = require('path');
+
 const variants = require('../variants.json');
 
 exports.command  = 'new <app>';
@@ -38,24 +40,36 @@ exports.handler = argv => {
     shell.exit(1);
   }
 
-  const interval = setInterval(() => {
-    logUpdate(`Fetching the boilerplate...${chalk.cyan.bold.dim(spinnerFrame())}`);
-  }, 50);
+  const spinner = ora(`Fetching the ${variants[argv.target].name} variant...`).start();
 
-  // Pull the corresponding variant into the given folder
-  shell.exec(`git clone -b ${variants[argv.target].git.branch} ${variants[argv.target].git.url} ${argv.app}`, code => {
-    clearInterval(interval);
-    logUpdate.clear();
+
+  // Clone the corresponding variant into the given folder
+  shell.exec(`git clone -b ${variants[argv.target].git.branch} ${variants[argv.target].git.url} ${argv.app} -q`, code => {
     if (code !== 0) {
-      console.log(chalk.red.bold('Error! Try again'));
+      spinner.fail('Error! Try again');
       shell.exit(1);
     }
 
     shell.cd(argv.app);
     shell.rm('-rf', '.git');
-    shell.exec('git init');
+    shell.exec('git init -q');
 
-    console.log(chalk.green.bold('Completed.....You are good to go!'));
+    const pwd = shell.pwd();
+    const package = require(path.resolve(pwd.stdout, 'package.json'));
+    package.name = argv.app;
+    package.description = '';
+    fs.writeFileSync('./package.json', `${JSON.stringify(package, null, 2)}\n`);
+    shell.cp(path.resolve(pwd.stdout, '.env.example'), path.join(pwd.stdout, '.env'));
+    shell.mkdir('-p', path.join(pwd.stdout, 'public/build'));
+
+    spinner.text = 'Installing dependencies...'
+    shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true}, (code, stdout, stderr) => {
+      if (code !== 0) {
+        spinner.fail('Error! Try installing dependencies manually.');
+        shell.exit(1);
+      }
+      spinner.succeed("Completed.....You are good to go!");
+    });
   });
   //console.log('Creating dir', argv.app);
 }
