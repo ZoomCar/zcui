@@ -1,7 +1,11 @@
 <template>
-  ${layout ? `<layout-${layout.param}>`:''}
+${layout ?
+`  <layout-${layout.param}>
     <div class="page page-${name.param}">${name.param}</div>
-  ${layout ? `</layout-${layout.param}>`:''}
+  </layout-${layout.param}>`
+:
+`  <div class="page page-${name.param}">${name.param}</div>`
+}
 </template>
 
 <script>
