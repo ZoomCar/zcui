@@ -41,8 +41,6 @@ exports.handler = argv => {
   const tplFileContent = fs.readFileSync(tplFilePath, 'utf8');
   const tplSpecContent = fs.readFileSync(tplSpecPath, 'utf8');
 
-  console.log(specPath);
-  console.log(tplSpecContent);
   fs.writeFileSync(filePath, evalTemplate(`\`${tplFileContent}\``, {name}));
   fs.writeFileSync(specPath, evalTemplate(`\`${tplSpecContent}\``, {name}));
 
