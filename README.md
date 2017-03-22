@@ -1,6 +1,10 @@
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+---
+
 ### Installation
-##### npm: `npm install -g zcui`
-##### yarn: `yarn global add zcui`
+npm: `npm install -g zcui`<br>
+yarn: `yarn global add zcui`
 
 
 ### Common commands
