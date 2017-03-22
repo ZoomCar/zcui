@@ -1,3 +1,8 @@
+### Installation
+##### npm: `npm install -g zcui`
+##### yarn: `yarn global add zcui`
+
+
 ### Common commands
 
 
@@ -20,20 +25,25 @@
       Examples:
         zcui new HelloWorld --target vue
 
+
     $ zcui create <type>
     ---------------------
       Commands:
         component <name>  create new component
         layout <name>     create new layout
         page <name>       create new page
+        helper <name>     create new helper
+        store <name>      create new store module
 
       Examples:
         zcui create component Calendar
         zcui create layout Default
         zcui create page Home --layout Default
+        zcui create helper date
+        zcui create store user
+
 
 ### New project directory structure
-    .
     ├── flow-typed
     │   ├── vue.js
     │   └── vuex.js
@@ -58,12 +68,16 @@
     │   │       ├── zc-timepicker.js
     │   │       ├── zc-timepicker.scss
     │   │       └── zc-timepicker.vue
+    │   ├── helpers
+    │   │   ├── __tests__
+    │   │   │   └── date.spec.js
+    │   │   └── date.js
     │   ├── index.ejs
     │   ├── layouts
-    │   │   ├── auth
-    │   │   │   ├── auth.js
-    │   │   │   ├── auth.scss
-    │   │   │   ├── auth.vue
+    │   │   ├── auto
+    │   │   │   ├── auto.js
+    │   │   │   ├── auto.scss
+    │   │   │   ├── auto.vue
     │   │   │   └── index.js
     │   │   └── default
     │   │       ├── default.js
@@ -83,7 +97,12 @@
     │   │       ├── login.scss
     │   │       └── login.vue
     │   ├── store
-    │   │   └── index.js
+    │   │   ├── index.js
+    │   │   └── modules
+    │   │       ├── __tests__
+    │   │       │   └── hello.spec.js
+    │   │       ├── hello.js
+    │   │       └── index.js
     │   └── styles
     │       └── style.scss
     ├── webpack.config.js
