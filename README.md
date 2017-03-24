@@ -1,5 +1,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![NPM version](http://img.shields.io/npm/v/zcui.svg?style=flat-square)](https://www.npmjs.org/package/zcui)
+[![NPM license](http://img.shields.io/npm/l/zcui.svg?style=flat-square)](https://www.npmjs.org/package/zcui)
 ---
 
 ### Installation
