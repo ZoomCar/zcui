@@ -55,4 +55,4 @@ yarn: `yarn global add zcui`
 ---
 
 ### Support Variants / Targets
-- vue
+- [vue](https://github.com/hamidraza/zcui-vue "zcui vue")
