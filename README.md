@@ -42,47 +42,47 @@ $ zcui --version
 
 ### Common commands
 
+```
+$ zcui
+------
+  Commands:
+    new <app>      Initialize new app                           [aliases: n, init]
+    create <type>  Create new component/page/layout etc  [aliases: generate, c, g]
 
-    $ zcui
-    ------
-      Commands:
-        new <app>      Initialize new app                           [aliases: n, init]
-        create <type>  Create new component/page/layout etc  [aliases: generate, c, g]
-    
-      Examples:
-        zcui new HelloWorld
-        zcui create component Calendar
-
-
-    $ zcui new <app>
-    ------------------
-      Options:
-        --target, -t   target template name       [string] [required] [choices: "vue"]
-
-      Examples:
-        zcui new HelloWorld --target vue
+  Examples:
+    zcui new HelloWorld
+    zcui create component Calendar
 
 
-    $ zcui create <type>
-    ---------------------
-      Commands:
-        component <name>  create new component
-        layout <name>     create new layout
-        page <name>       create new page
-        helper <name>     create new helper
-        store <name>      create new store module
-        style <name>      create new Style partial
+$ zcui new <app>
+------------------
+  Options:
+    --target, -t   target template name       [string] [required] [choices: "vue"]
 
-      Examples:
-        zcui create component Calendar
-        zcui create layout Default
-        zcui create page Home --layout Default
-        zcui create helper date
-        zcui create store user
-        zcui create style button
+  Examples:
+    zcui new HelloWorld --target vue
 
----
-<br>
+
+$ zcui create <type>
+---------------------
+  Commands:
+    component <name>  create new component
+    layout <name>     create new layout
+    page <name>       create new page
+    helper <name>     create new helper
+    store <name>      create new store module
+    style <name>      create new Style partial
+
+  Examples:
+    zcui create component Calendar
+    zcui create layout Default
+    zcui create page Home --layout Default
+    zcui create helper date
+    zcui create store user
+    zcui create style button
+```
+
+<hr>
 
 ### Support Variants / Targets
 - [vue](https://github.com/hamidraza/zcui-vue "zcui vue")
