@@ -5,9 +5,35 @@
 [![Dependencies](https://david-dm.org/zoomcar/zcui/status.svg?style=flat-square)](https://david-dm.org/zoomcar/zcui)
 ---
 
-### Installation
-npm: `npm install -g zcui`<br>
-yarn: `yarn global add zcui`
+
+
+# Getting started
+#### Prerequisites
+
+##### Node
+
+First, install the latest version of Node.
+
+Node is available for a variety of platforms at nodejs.org. It is important that you not install Node with sudo in order to avoid permission problems. On Unix, [nvm](https://github.com/creationix/nvm) provides a convenient way to do this. On OS X, you can also use [Homebrew](https://brew.sh/). On Windows, [chocolatey](https://chocolatey.org/) is an option.
+
+After the installation is complete, verify that Node is set up correctly by typing the below commands on the command line. Both should output a version number:
+
+```
+$ node -v
+$ npm -v
+```
+
+##### zcui CLI
+
+Once you’ve installed Node, you’ll need to globally install zcui CLI:
+
+```
+$ npm install -g zcui
+```
+After the installation is complete, verify that zcui is set up correctly by typing the below commands on the command line.
+```
+$ zcui --version
+```
 
 ---
 
