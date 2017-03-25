@@ -10,9 +10,9 @@
   "bin": {
     "zcui": "index.js"
   },
-  "pre-commit": {
+  "pre-commit": [
     "lint"
-  },
+  ],
   "keywords": [
     "cli",
     "vuejs",
