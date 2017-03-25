@@ -2,6 +2,7 @@
 [![NPM version](http://img.shields.io/npm/v/zcui.svg?style=flat-square)](https://www.npmjs.org/package/zcui)
 [![NPM license](http://img.shields.io/npm/l/zcui.svg?style=flat-square)](https://github.com/ZoomCar/zcui/blob/master/LICENSE)
 [![issues](https://img.shields.io/github/issues/zoomcar/zcui.svg?style=flat-square)](https://github.com/ZoomCar/zcui/issues)
+[![Dependencies](https://david-dm.org/zoomcar/zcui/status.svg?style=flat-square)](https://david-dm.org/zoomcar/zcui)
 ---
 
 ### Installation
