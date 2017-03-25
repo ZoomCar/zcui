@@ -20,6 +20,7 @@ yargs
   .showHelpOnFail(false, 'Specify --help for available options')
   .version().alias('v', 'version')
   .help().alias('h', 'help')
+  .group(['help', 'version'], 'App Options:')
   .epilogue('for more information, find our manual at https://zoomcar.github.io/zcui/')
   .argv;
 
