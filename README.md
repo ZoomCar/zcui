@@ -9,6 +9,7 @@
 npm: `npm install -g zcui`<br>
 yarn: `yarn global add zcui`
 
+---
 
 ### Common commands
 
@@ -51,69 +52,7 @@ yarn: `yarn global add zcui`
         zcui create store user
         zcui create style button
 
+---
 
-### New project directory structure
-    ├── flow-typed
-    │   ├── vue.js
-    │   └── vuex.js
-    ├── package.json
-    ├── public
-    │   ├── build
-    │   └── service-worker.js
-    ├── src
-    │   ├── app
-    │   │   ├── app.js
-    │   │   ├── app.scss
-    │   │   ├── app.vue
-    │   │   └── index.js
-    │   ├── components
-    │   │   ├── zc-calendar
-    │   │   │   ├── index.js
-    │   │   │   ├── zc-calendar.js
-    │   │   │   ├── zc-calendar.scss
-    │   │   │   └── zc-calendar.vue
-    │   │   └── zc-timepicker
-    │   │       ├── index.js
-    │   │       ├── zc-timepicker.js
-    │   │       ├── zc-timepicker.scss
-    │   │       └── zc-timepicker.vue
-    │   ├── helpers
-    │   │   ├── __tests__
-    │   │   │   └── date.spec.js
-    │   │   └── date.js
-    │   ├── index.ejs
-    │   ├── layouts
-    │   │   ├── auto
-    │   │   │   ├── auto.js
-    │   │   │   ├── auto.scss
-    │   │   │   ├── auto.vue
-    │   │   │   └── index.js
-    │   │   └── default
-    │   │       ├── default.js
-    │   │       ├── default.scss
-    │   │       ├── default.vue
-    │   │       └── index.js
-    │   ├── main.js
-    │   ├── pages
-    │   │   ├── home
-    │   │   │   ├── home.js
-    │   │   │   ├── home.scss
-    │   │   │   ├── home.vue
-    │   │   │   └── index.js
-    │   │   └── login
-    │   │       ├── index.js
-    │   │       ├── login.js
-    │   │       ├── login.scss
-    │   │       └── login.vue
-    │   ├── store
-    │   │   ├── index.js
-    │   │   └── modules
-    │   │       ├── __tests__
-    │   │       │   └── hello.spec.js
-    │   │       ├── hello.js
-    │   │       └── index.js
-    │   └── styles
-    │       └── style.scss
-    ├── webpack.config.js
-    └── yarn.lock
-
+### Support Variants / Targets
+- vue
