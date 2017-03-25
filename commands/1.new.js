@@ -65,7 +65,7 @@ exports.handler = argv => {
 
     shell.cd(app.param);
     shell.rm('-rf', '.git');
-    shell.exec('git init -q');
+    shell.exec('git init', {silent: true});
 
     const pwd = shell.pwd();
     const pkgJson = require(path.resolve(pwd.stdout, 'package.json'));
@@ -74,6 +74,8 @@ exports.handler = argv => {
     fs.writeFileSync('./package.json', `${JSON.stringify(pkgJson, null, 2)}\n`);
     shell.cp(path.resolve(pwd.stdout, '.env.example'), path.join(pwd.stdout, '.env'));
     shell.mkdir('-p', path.join(pwd.stdout, 'public/build'));
+
+    shell.exec('git add . && git commit -m "zcui: Initial commit"', {silent: true});
 
     spinner.text = 'Installing dependencies...';
 
