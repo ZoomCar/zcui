@@ -10,7 +10,7 @@ exports.desc     = 'create new store';
 
 exports.builder = yargs => {
   return yargs.example('$0 create store User');
-}
+};
 
 exports.handler = argv => {
   const pwd = shell.pwd().stdout;
@@ -68,5 +68,5 @@ exports.handler = argv => {
   fs.writeFileSync(indexPath, indexContent);
 
   console.log(logSymbols.success, ` ${name.param} Store module created`);
-}
+};
 

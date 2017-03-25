@@ -1,5 +1,4 @@
 const shell = require('shelljs');
-const chalk = require('chalk');
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
@@ -11,11 +10,10 @@ exports.desc     = 'create new component';
 
 exports.builder = yargs => {
   return yargs.example('$0 create component zc-calendar');
-}
+};
 
 exports.handler = argv => {
   const pwd = shell.pwd().stdout;
-  const componentTpl = path.resolve(__dirname, '../..', 'templates/create/component');
   const componentsDir = path.join(pwd, 'src/components');
 
   if (!shell.test('-d', componentsDir)) {

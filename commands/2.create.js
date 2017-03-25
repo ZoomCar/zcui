@@ -1,5 +1,3 @@
-const shell = require('shelljs');
-
 exports.command    = 'create <type>';
 exports.aliases    = ['generate', 'c', 'g'];
 exports.desc       = 'Create new component/page/layout etc';

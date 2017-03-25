@@ -10,7 +10,7 @@ exports.desc     = 'create new style';
 
 exports.builder = yargs => {
   return yargs.example('$0 create style button');
-}
+};
 
 exports.handler = argv => {
   const pwd = shell.pwd().stdout;
@@ -57,5 +57,5 @@ exports.handler = argv => {
   fs.writeFileSync(indexPath, indexContent);
 
   console.log(logSymbols.success, ` ${name.param} Style partial created`);
-}
+};
 

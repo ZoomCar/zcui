@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-const changeCase = require('change-case');
 const m          = require('motivation');
-const fs         = require('fs');
 const yargs      = require('yargs');
 const chalk      = require('chalk');
 const wrap       = require('word-wrap');
@@ -12,7 +10,7 @@ if(text && author) console.log(`${chalk.green.dim(wrap(text, {width: 80, indent:
   [${chalk.blue.dim(author)}]
 `);
 
-var argv = yargs
+yargs
   .usage('Usage: $0 <command> [options]')
   .example('$0 new HelloWorld')
   .example('$0 create component Calendar')

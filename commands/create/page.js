@@ -1,5 +1,4 @@
 const shell = require('shelljs');
-const chalk = require('chalk');
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
@@ -20,7 +19,7 @@ exports.builder = yargs => {
         type: 'string'
       }
     });
-}
+};
 
 exports.handler = argv => {
   if(argv.layout === '') {
@@ -73,5 +72,5 @@ exports.handler = argv => {
   });
 
   console.log(logSymbols.success, ` ${name.param} Page created`);
-}
+};
 

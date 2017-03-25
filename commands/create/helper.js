@@ -10,7 +10,7 @@ exports.desc     = 'create new helper';
 
 exports.builder = yargs => {
   return yargs.example('$0 create helper Date');
-}
+};
 
 exports.handler = argv => {
   const pwd = shell.pwd().stdout;
@@ -45,5 +45,5 @@ exports.handler = argv => {
   fs.writeFileSync(specPath, evalTemplate(`\`${tplSpecContent}\``, {name}));
 
   console.log(logSymbols.success, ` ${name.param} Helper created`);
-}
+};
 

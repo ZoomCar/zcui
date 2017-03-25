@@ -1,5 +1,4 @@
 const shell = require('shelljs');
-const chalk = require('chalk');
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
@@ -11,7 +10,7 @@ exports.desc     = 'create new layout';
 
 exports.builder = yargs => {
   return yargs.example('$0 create layout Primary');
-}
+};
 
 exports.handler = argv => {
   const pwd = shell.pwd().stdout;
@@ -48,5 +47,5 @@ exports.handler = argv => {
   });
 
   console.log(logSymbols.success, ` ${name.param} Layout created`);
-}
+};
 

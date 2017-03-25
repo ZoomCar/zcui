@@ -23,7 +23,7 @@ exports.builder = yargs => {
         choices: Object.keys(variants)
       }
     });
-}
+};
 
 exports.handler = argv => {
   const app = {
@@ -68,16 +68,16 @@ exports.handler = argv => {
     shell.exec('git init -q');
 
     const pwd = shell.pwd();
-    const package = require(path.resolve(pwd.stdout, 'package.json'));
-    package.name = app.param;
-    package.description = '';
-    fs.writeFileSync('./package.json', `${JSON.stringify(package, null, 2)}\n`);
+    const pkgJson = require(path.resolve(pwd.stdout, 'package.json'));
+    pkgJson.name = app.param;
+    pkgJson.description = '';
+    fs.writeFileSync('./package.json', `${JSON.stringify(pkgJson, null, 2)}\n`);
     shell.cp(path.resolve(pwd.stdout, '.env.example'), path.join(pwd.stdout, '.env'));
     shell.mkdir('-p', path.join(pwd.stdout, 'public/build'));
 
     spinner.text = 'Installing dependencies...';
 
-    const installStdout = shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, (code, stdout, stderr) => {
+    shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
       if (code !== 0) {
         spinner.fail('Error! Try installing dependencies manually.');
         shell.exit(1);
@@ -93,8 +93,6 @@ exports.handler = argv => {
     }).stdout.on('data', data => {
       spinner.text = data.split("\n")[0];
     });
-    /*shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true}, (code, stdout, stderr) => {
-    });*/
   });
-}
+};
 
