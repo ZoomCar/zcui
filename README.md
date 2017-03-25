@@ -8,9 +8,10 @@
 
 
 # Getting started
-#### Prerequisites
+### Prerequisites
+<br>
 
-##### Node
+#### Node
 
 First, install the latest version of Node.
 
@@ -22,20 +23,22 @@ After the installation is complete, verify that Node is set up correctly by typi
 $ node -v
 $ npm -v
 ```
+<br>
 
-##### zcui CLI
+#### zcui CLI
 
 Once you’ve installed Node, you’ll need to globally install zcui CLI:
 
 ```
 $ npm install -g zcui
 ```
-After the installation is complete, verify that zcui is set up correctly by typing the below commands on the command line.
+After the installation is complete, verify that zcui is set up correctly by typing the below command on the command line.
 ```
 $ zcui --version
 ```
 
 ---
+<br>
 
 ### Common commands
 
@@ -79,6 +82,7 @@ $ zcui --version
         zcui create style button
 
 ---
+<br>
 
 ### Support Variants / Targets
 - [vue](https://github.com/hamidraza/zcui-vue "zcui vue")
