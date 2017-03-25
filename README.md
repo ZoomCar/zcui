@@ -3,6 +3,7 @@
 [![NPM license](http://img.shields.io/npm/l/zcui.svg?style=flat-square)](https://github.com/ZoomCar/zcui/blob/master/LICENSE)
 [![issues](https://img.shields.io/github/issues/zoomcar/zcui.svg?style=flat-square)](https://github.com/ZoomCar/zcui/issues)
 [![Dependencies](https://david-dm.org/zoomcar/zcui/status.svg?style=flat-square)](https://david-dm.org/zoomcar/zcui)
+[![Travis-ci](https://img.shields.io/travis/ZoomCar/zcui.svg?style=flat-square)](https://travis-ci.org/ZoomCar/zcui)
 ---
 
 
