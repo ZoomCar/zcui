@@ -4,6 +4,7 @@ const changeCase = require('change-case');
 const shell = require('shelljs');
 const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
+const {getProjectRoot} = require('../../helpers');
 
 exports.command  = 'store <name>';
 exports.desc     = 'create new store';
@@ -13,7 +14,7 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = shell.pwd().stdout;
+  const pwd = getProjectRoot();
   const name = {
     default: argv.name,
     param  : changeCase.paramCase(argv.name),

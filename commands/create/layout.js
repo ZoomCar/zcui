@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
+const {getProjectRoot} = require('../../helpers');
 
 exports.command  = 'layout <name>';
 exports.desc     = 'create new layout';
@@ -13,7 +14,7 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = shell.pwd().stdout;
+  const pwd = getProjectRoot();
   const componentsDir = path.join(pwd, 'src/layouts');
 
   if (!shell.test('-d', componentsDir)) {

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
+const {getProjectRoot} = require('../../helpers');
 
 exports.command  = 'component <name>';
 exports.desc     = 'create new component';
@@ -13,7 +14,7 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = shell.pwd().stdout;
+  const pwd = getProjectRoot();
   const componentsDir = path.join(pwd, 'src/components');
 
   if (!shell.test('-d', componentsDir)) {

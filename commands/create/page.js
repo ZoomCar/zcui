@@ -1,28 +1,32 @@
 const shell = require('shelljs');
+const chalk = require('chalk');
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
 const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
+const {getProjectRoot} = require('../../helpers');
 
 exports.command  = 'page <name>';
 exports.desc     = 'create new page';
 
 exports.builder = yargs => {
-  const layoutDir = path.join(shell.pwd().toString(), 'src/layouts');
-  const availableLayouts = shell.ls('-l', layoutDir)
+  const pwd = getProjectRoot();
+  const layoutDir = path.join(pwd, 'src/layouts');
+  const availableLayouts = shell.test('-d', layoutDir) ? shell.ls('-l', layoutDir)
     .filter(l => shell.test('-d', path.join(layoutDir, l.name)) )
-    .map(l => l.name);
+    .map(l => l.name) : [];
 
   return yargs
-    .example('$0 create page Home --layout Default')
+    .example(`$0 create page Home --layout default ${chalk.dim('# for page with layout')} ${chalk.underline.dim.bold('default')}`)
+    .example(`$0 create page Home --no-layout      ${chalk.dim('# for page without any layout')}`)
     .options({
       'layout': {
         alias        : 'l',
         demandOption : true,
         describe     : 'layout for the page',
         type         : 'string',
-        choices      : availableLayouts
+        choices      : [false, ...availableLayouts]
       }
     });
 };
@@ -37,7 +41,7 @@ exports.handler = argv => {
     //console.log('Without layout');
   }
 
-  const pwd = shell.pwd().stdout;
+  const pwd = getProjectRoot();
   const componentsDir = path.join(pwd, 'src/pages');
 
   if (!shell.test('-d', componentsDir)) {

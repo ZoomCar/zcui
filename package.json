@@ -36,6 +36,7 @@
     "change-case": "^3.0.1",
     "cross-env": "^3.2.4",
     "eslint": "^3.18.0",
+    "find-root": "^1.0.0",
     "motivation": "^1.0.3",
     "ora": "^1.1.0",
     "shelljs": "^0.7.7",
