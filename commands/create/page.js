@@ -9,14 +9,20 @@ exports.command  = 'page <name>';
 exports.desc     = 'create new page';
 
 exports.builder = yargs => {
+  const layoutDir = path.join(shell.pwd().toString(), 'src/layouts');
+  const availableLayouts = shell.ls('-l', layoutDir)
+    .filter(l => shell.test('-d', path.join(layoutDir, l.name)) )
+    .map(l => l.name);
+
   return yargs
     .example('$0 create page Home --layout Default')
     .options({
       'layout': {
-        alias: 'l',
-        demandOption: true,
-        describe: 'layout for the page',
-        type: 'string'
+        alias        : 'l',
+        demandOption : true,
+        describe     : 'layout for the page',
+        type         : 'string',
+        choices      : availableLayouts
       }
     });
 };
