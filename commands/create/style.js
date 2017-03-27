@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const changeCase = require('change-case');
 const shell = require('shelljs');
 const {evalTemplate} = require('../../helpers/template');
@@ -57,6 +58,6 @@ exports.handler = argv => {
   const indexContent = `${importStr}\n\n`;
   fs.writeFileSync(indexPath, indexContent);
 
-  console.log(logSymbols.success, ` ${name.param} Style partial created`);
+  console.log(logSymbols.success, `${chalk.bold(name.param)} Style _partial created`);
 };
 

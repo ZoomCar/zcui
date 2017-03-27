@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const chalk = require('chalk');
 const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
@@ -47,6 +48,10 @@ exports.handler = argv => {
     fs.writeFileSync(filePath, fileContent);
   });
 
-  console.log(logSymbols.success, ` ${name.param} Component created`);
+  console.log(logSymbols.success, `${chalk.bold(name.param)} Component created`);
+  console.log(`
+  ${chalk.underline.dim('Use:')}
+  import ${chalk.bold(name.pascal)} from '${chalk.bold(`~/components/${name.param}`)}';
+  `);
 };
 

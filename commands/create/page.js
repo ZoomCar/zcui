@@ -81,6 +81,10 @@ exports.handler = argv => {
     fs.writeFileSync(filePath, fileContent);
   });
 
-  console.log(logSymbols.success, ` ${name.param} Page created`);
+  console.log(logSymbols.success, `${chalk.bold(name.param)} Page created`);
+  console.log(`
+  ${chalk.underline.dim('Use:')}
+  import ${chalk.bold(name.pascal)} from '${chalk.bold(`~/pages/${name.param}`)}';
+  `);
 };
 

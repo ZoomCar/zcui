@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const changeCase = require('change-case');
 const shell = require('shelljs');
+const chalk = require('chalk');
 const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
@@ -45,6 +46,10 @@ exports.handler = argv => {
   fs.writeFileSync(filePath, evalTemplate(`\`${tplFileContent}\``, {name}));
   fs.writeFileSync(specPath, evalTemplate(`\`${tplSpecContent}\``, {name}));
 
-  console.log(logSymbols.success, ` ${name.param} Helper created`);
+  console.log(logSymbols.success, `${chalk.bold(name.param)} Helper created`);
+  console.log(`
+  ${chalk.underline.dim('Use:')}
+  import ${chalk.bold(name.camel)} from '${chalk.bold(`~/helpers/${name.param}`)}';
+  `);
 };
 

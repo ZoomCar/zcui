@@ -1,7 +1,8 @@
-const shell = require('shelljs');
-const changeCase = require('change-case');
 const fs = require('fs');
 const path = require('path');
+const shell = require('shelljs');
+const chalk = require('chalk');
+const changeCase = require('change-case');
 const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
@@ -47,6 +48,10 @@ exports.handler = argv => {
     fs.writeFileSync(filePath, fileContent);
   });
 
-  console.log(logSymbols.success, ` ${name.param} Layout created`);
+  console.log(logSymbols.success, `${chalk.bold(name.param)} Layout created`);
+  console.log(`
+  ${chalk.underline.dim('Use:')}
+  import ${chalk.bold(name.pascal)} from '${chalk.bold(`~/layouts/${name.param}`)}';
+  `);
 };
 

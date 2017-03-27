@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const changeCase = require('change-case');
 const shell = require('shelljs');
 const {evalTemplate} = require('../../helpers/template');
@@ -68,6 +69,6 @@ exports.handler = argv => {
   const indexContent = `${importStr}\n\nexport default {${exportStr}\n};\n\n`;
   fs.writeFileSync(indexPath, indexContent);
 
-  console.log(logSymbols.success, ` ${name.param} Store module created`);
+  console.log(logSymbols.success, `${chalk.bold(name.param)} Store module created`);
 };
 
