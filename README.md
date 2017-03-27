@@ -43,38 +43,38 @@ $ zcui --version
 
 ### Common commands
 
-```
+``` bash
 $ zcui
-------
-  Commands:
-    new <app>      Initialize new app                           [aliases: n, init]
-    create <type>  Create new component/page/layout etc  [aliases: generate, c, g]
+#------
+  # Commands:
+    new <app-name>      # Initialize new app                           [aliases: n, init]
+    create <type>       # Create new component/page/layout etc  [aliases: generate, c, g]
 
-  Examples:
+  # Examples:
     zcui new HelloWorld
     zcui create component Calendar
 
 
 $ zcui new <app>
-------------------
-  Options:
-    --target, -t   target template name       [string] [required] [choices: "vue"]
+#------------------
+  # Options:
+    --target, -t   # target template name       [string] [required] [choices: "vue"]
 
-  Examples:
+  # Examples:
     zcui new HelloWorld --target vue
 
 
 $ zcui create <type>
----------------------
-  Commands:
-    component <name>  create new component
-    layout <name>     create new layout
-    page <name>       create new page
-    helper <name>     create new helper
-    store <name>      create new store module
-    style <name>      create new Style partial
+#---------------------
+  # Commands:
+    component <name>  # create new component
+    layout <name>     # create new layout
+    page <name>       # create new page
+    helper <name>     # create new helper
+    store <name>      # create new store module
+    style <name>      # create new Style partial
 
-  Examples:
+  # Examples:
     zcui create component Calendar
     zcui create layout Default
     zcui create page Home --layout Default
