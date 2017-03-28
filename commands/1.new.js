@@ -21,6 +21,11 @@ exports.builder = yargs => {
         describe: 'target template name',
         type: 'string',
         choices: Object.keys(variants)
+      },
+      'dependencies': {
+        describe: 'to skip dependencies installation use --no-dependencies',
+        type: 'boolean',
+        default: true
       }
     });
 };
@@ -77,24 +82,36 @@ exports.handler = argv => {
 
     shell.exec('git add . && git commit -m "zcui: Initial commit"', {silent: true});
 
-    spinner.text = 'Installing dependencies...';
+    if(argv.dependencies) {
+      spinner.text = 'Installing dependencies...';
 
-    shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
-      if (code !== 0) {
-        spinner.fail('Error! Try installing dependencies manually.');
-        shell.exit(1);
-      }
-      spinner.succeed(`Completed.....You are good to go!
+      shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
+        if (code !== 0) {
+          spinner.fail('Error! Try installing dependencies manually.');
+          shell.exit(1);
+        }
+        spinner.succeed(`Completed.....You are good to go!
   Project ${chalk.bold(app.param)} created.
 
   ${chalk.dim('>_ [RUN]')}
   ${chalk.dim('$')} cd ${app.param}
   ${chalk.dim('$')} npm run dev   ${chalk.dim('# to start dev server')}
   ${chalk.dim('$')} npm run prod  ${chalk.dim('# to build for production')}
+        `);
+      }).stdout.on('data', data => {
+        spinner.text = data.split("\n")[0];
+      });
+    } else {
+      spinner.succeed(`Completed.....You are good to go!
+  Project ${chalk.bold(app.param)} created.
+
+  ${chalk.dim('>_ [RUN]')}
+  ${chalk.dim('$')} cd ${app.param}
+  ${chalk.dim('$')} npm install   ${chalk.dim('# to install dependencies')}
+  ${chalk.dim('$')} npm run dev   ${chalk.dim('# to start dev server')}
+  ${chalk.dim('$')} npm run prod  ${chalk.dim('# to build for production')}
       `);
-    }).stdout.on('data', data => {
-      spinner.text = data.split("\n")[0];
-    });
+    }
   });
 };
 
