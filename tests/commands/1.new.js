@@ -17,7 +17,9 @@ App Options:
   -v, --version  Show version number                                   [boolean]
 
 Options:
-  --target, -t  target template name        [string] [required] [choices: "vue"]
+  --target, -t    target template name      [string] [required] [choices: "vue"]
+  --dependencies  to skip dependencies installation use --no-dependencies
+                                                       [boolean] [default: true]
 
 Examples:
   index.js new HelloWorld`);
@@ -50,6 +52,30 @@ test("Show error on multiple new project name", t => {
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 0) t.fail();
     t.equal(stdout.trim(), 'Please give only one argument as a directory name!!!');
+    t.end();
+  });
+});
+
+test("Create project without dependencies", t => {
+  const command = `${zcui} HelloWorld -t vue --no-dependencies`;
+
+  /**
+   * Cleanup test project directory
+   */
+  shell.rm('-rf', testProjPath, {silent:true});
+  shell.mkdir('-p', testProjPath);
+  shell.cd(testProjPath);
+
+  shell.exec(command, {silent:true}, (code, stdout, stderr) => {
+    if(code === 1) t.fail();
+    t.equal(stderr.trim(), `✔ Completed.....You are good to go!
+  Project hello-world created.
+
+  >_ [RUN]
+  $ cd hello-world
+  $ npm install   # to install dependencies
+  $ npm run dev   # to start dev server
+  $ npm run prod  # to build for production`);
     t.end();
   });
 });
