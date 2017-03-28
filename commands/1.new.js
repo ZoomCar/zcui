@@ -35,17 +35,17 @@ exports.handler = argv => {
 
   if (!shell.which('git')) {
     console.log(chalk.red('Sorry, this script requires git'));
-    shell.exit(1);
+    process.exit(1);
   }
 
   if (argv._.length > 1) {
     console.log(chalk.red('Please give only one argument as a directory name!!!'));
-    shell.exit(1);
+    process.exit(1);
   }
 
   if (shell.test('-d', app.param)) {
     console.log(chalk.red(`${argv.app} directory already exits! Please choose some another name!!!`));
-    shell.exit(1);
+    process.exit(1);
   }
 
   const spinner = ora({

@@ -1,14 +1,6 @@
 #!/usr/bin/env node
 
-const m          = require('motivation');
-const yargs      = require('yargs');
-const chalk      = require('chalk');
-const wrap       = require('word-wrap');
-
-const {text, author} = m.get() || {};
-if(text && author) console.log(`${chalk.green.dim(wrap(text, {width: 80, indent: '  '}))}
-  [${chalk.blue.dim(author)}]
-`);
+const yargs = require('yargs');
 
 yargs
   .usage('Usage: $0 <command> [options]')
@@ -23,6 +15,4 @@ yargs
   .group(['help', 'version'], 'App Options:')
   .epilogue('for more information, find our manual at https://zoomcar.github.io/zcui/')
   .argv;
-
-// console.log('Data we have: ', argv);
 
