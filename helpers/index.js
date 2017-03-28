@@ -4,10 +4,10 @@ const shell    = require('shelljs');
 const findRoot = require('find-root');
 
 module.exports = {
-  getProjectRoot() {
+  getProjectRoot(pwd = null) {
     let projectRoot = null;
     try{
-      projectRoot = findRoot(shell.pwd().toString());
+      projectRoot = findRoot(pwd || shell.pwd().toString());
     } catch(e) {
       // TODO: handle exception
       return null;
