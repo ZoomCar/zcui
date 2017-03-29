@@ -32,15 +32,6 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  if(argv.layout === '') {
-    console.log(`${logSymbols.error} Sorry, you need to provide valid non empty layout name.`);
-    shell.exit(1);
-  }
-
-  if(argv.layout === false) {
-    //console.log('Without layout');
-  }
-
   const pwd = getProjectRoot();
   const componentsDir = path.join(pwd, 'src/pages');
 
