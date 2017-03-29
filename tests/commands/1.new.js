@@ -101,6 +101,8 @@ test("Create project", t => {
   $ npm run prod  # to build for production`);
     t.end();
   });
+}, {
+  skip: false
 });
 
 test("Error on duplicate project", t => {

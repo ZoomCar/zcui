@@ -29,3 +29,50 @@ Examples:
   });
 });
 
+test("CREATE_LAYOUT: success", t => {
+  const command = `${zcui} default`;
+
+  /**
+   * Cleanup default layout
+   */
+  shell.rm('-rf', 'src/layouts/default', {silent: true});
+
+  shell.exec(command, {silent:true}, (code, stdout, stderr) => {
+    if(code === 1) t.fail(stderr);
+    t.equal(stdout.trim(), `✔ default Layout created
+
+  Use:
+  import Default from '~/layouts/default';
+    `.trim());
+    t.end();
+  });
+});
+
+test("CREATE_LAYOUT: has layout files", t => {
+
+  /**
+   * Don not remove default layout
+   * default layout created in previous test
+   */
+  t.ok(shell.test('-f', 'src/layouts/default/index.js'));
+  t.ok(shell.test('-f', 'src/layouts/default/default.js'));
+  t.ok(shell.test('-f', 'src/layouts/default/default.vue'));
+  t.ok(shell.test('-f', 'src/layouts/default/default.scss'));
+  t.end();
+});
+
+test("CREATE_LAYOUT: error on duplicate", t => {
+  const command = `${zcui} default`;
+
+  /**
+   * Don not remove default layout
+   * default layout created in previous test
+   */
+
+  shell.exec(command, {silent:true}, (code, stdout, stderr) => {
+    if(code === 0) t.fail(stderr);
+    t.equal(stdout.trim(), '✖ default layout already exits! Please choose some another name!!!');
+    t.end();
+  });
+});
+
