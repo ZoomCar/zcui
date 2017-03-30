@@ -17,7 +17,8 @@ App Options:
   -v, --version  Show version number                                   [boolean]
 
 Options:
-  --target, -t    target template name      [string] [required] [choices: "vue"]
+  --target, -t    target template name
+                                 [string] [required] [choices: "vue", "vue-pwa"]
   --dependencies  to skip dependencies installation use --no-dependencies
                                                        [boolean] [default: true]
 
@@ -41,7 +42,7 @@ test("Show error on invalid varient or target", t => {
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 0) t.fail();
     t.equal(stderr.trim(), `Invalid values:
-  Argument: target, Given: "invalid", Choices: "vue"`);
+  Argument: target, Given: "invalid", Choices: "vue", "vue-pwa"`);
     t.end();
   });
 });
