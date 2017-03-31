@@ -89,3 +89,5 @@ $ zcui create <type>
 
 ### Support Variants / Targets
 - [vue](https://github.com/hamidraza/zcui-vue "zcui vue")
+- [vue-pwa](https://github.com/hamidraza/zcui-vue-pwa "zcui vue-pwa")
+
