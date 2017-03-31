@@ -2,6 +2,7 @@
 
 class ${name.pascal}State {
   constructor() {
+    this.name = '${name.pascal}'
   }
 }
 
