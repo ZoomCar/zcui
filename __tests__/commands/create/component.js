@@ -1,6 +1,7 @@
 const tap = require('tap');
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
 
 const test = tap.test;
 const zcui = `node ${path.resolve(__dirname, '../../../index.js')} create component`;
@@ -74,5 +75,62 @@ test("CREATE_COMPONENT: error on duplicate", t => {
     t.equal(stdout.trim(), '✖ zc-calendar component already exits! Please choose some another name!!!');
     t.end();
   });
+});
+
+test("COMPONENT_CONTENT: index.js", t => {
+  t.equal(fs.readFileSync('src/components/zc-calendar/index.js', 'utf-8').trim(), `
+import ZcCalendar from './zc-calendar.vue';
+export default ZcCalendar;
+  `.trim());
+  t.end();
+});
+
+test("COMPONENT_CONTENT: component.js", t => {
+  t.equal(fs.readFileSync('src/components/zc-calendar/zc-calendar.js', 'utf-8').trim(), `
+/* @flow */
+
+export default {
+  name: 'zc-calendar',
+  data() {
+    return {}
+  }
+}
+  `.trim());
+  t.end();
+});
+
+test("COMPONENT_CONTENT: component.vue", t => {
+  t.equal(fs.readFileSync('src/components/zc-calendar/zc-calendar.vue', 'utf-8').trim(), `
+<template>
+  <div class="component-zc-calendar">zc-calendar</div>
+</template>
+
+<script>
+import './zc-calendar.scss';
+
+import ZcCalendar from './zc-calendar';
+export default ZcCalendar;
+</script>
+  `.trim());
+  t.end();
+});
+
+test("COMPONENT_CONTENT: component.scss", t => {
+  t.equal(fs.readFileSync('src/components/zc-calendar/zc-calendar.scss', 'utf-8').trim(), `
+.component-zc-calendar {
+}
+  `.trim());
+  t.end();
+});
+
+test("COMPONENT_CONTENT: component.spec.js", t => {
+  t.equal(fs.readFileSync('src/components/zc-calendar/zc-calendar.spec.js', 'utf-8').trim(), `
+import ZcCalendar from './zc-calendar';
+
+test('ZcCalendar name', () => {
+  expect(ZcCalendar.name).toBe('zc-calendar');
+});
+  `.trim());
+  t.end();
 });
 
