@@ -4,7 +4,7 @@
   "description": "Command line tool to generate SPA/components",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && cross-env NODE_ENV=test tap tests/*.js tests/*/*.js tests/*/*/*.js --cov",
+    "test": "npm run lint && cross-env NODE_ENV=test tap __tests__/*.js __tests__/*/*.js __tests__/*/*/*.js --cov",
     "lint": "eslint ./"
   },
   "bin": {
