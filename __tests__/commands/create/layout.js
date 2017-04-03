@@ -1,6 +1,7 @@
 const tap = require('tap');
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
 
 const test = tap.test;
 const zcui = `node ${path.resolve(__dirname, '../../../index.js')} create layout`;
@@ -65,7 +66,7 @@ test("CREATE_LAYOUT: error on duplicate", t => {
   const command = `${zcui} default`;
 
   /**
-   * Don not remove default layout
+   * Do not remove default layout
    * default layout created in previous test
    */
 
@@ -74,5 +75,64 @@ test("CREATE_LAYOUT: error on duplicate", t => {
     t.equal(stdout.trim(), '✖ default layout already exits! Please choose some another name!!!');
     t.end();
   });
+});
+
+test("LAYOUT_CONTENT: index.js", t => {
+  t.equal(fs.readFileSync('src/layouts/default/index.js', 'utf-8').trim(), `
+import DefaultLayout from './default.vue';
+export default DefaultLayout;
+  `.trim());
+  t.end();
+});
+
+test("LAYOUT_CONTENT: layout.js", t => {
+  t.equal(fs.readFileSync('src/layouts/default/default.js', 'utf-8').trim(), `
+/* @flow */
+
+export default {
+  name: 'layout-default',
+  data() {
+    return {}
+  }
+}
+  `.trim());
+  t.end();
+});
+
+test("LAYOUT_CONTENT: layout.vue", t => {
+  t.equal(fs.readFileSync('src/layouts/default/default.vue', 'utf-8').trim(), `
+<template>
+  <div class="layout layout-default">
+    <slot>DefaultSlot - default</slot>
+  </div>
+</template>
+
+<script>
+import './default.scss';
+
+import DefaultLayout from './default';
+export default DefaultLayout;
+</script>
+  `.trim());
+  t.end();
+});
+
+test("LAYOUT_CONTENT: layout.scss", t => {
+  t.equal(fs.readFileSync('src/layouts/default/default.scss', 'utf-8').trim(), `
+.layout-default {
+}
+  `.trim());
+  t.end();
+});
+
+test("LAYOUT_CONTENT: component.spec.js", t => {
+  t.equal(fs.readFileSync('src/layouts/default/default.spec.js', 'utf-8').trim(), `
+import DefaultLayout from './default';
+
+test('DefaultLayout name', () => {
+  expect(DefaultLayout.name).toBe('layout-default');
+});
+  `.trim());
+  t.end();
 });
 
