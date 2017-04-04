@@ -12,9 +12,6 @@
   "bin": {
     "zcui": "index.js"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "keywords": [
     "cli",
     "vuejs",
