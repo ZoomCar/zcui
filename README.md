@@ -5,6 +5,7 @@
 [![Dependencies](https://david-dm.org/zoomcar/zcui/status.svg?style=flat-square)](https://david-dm.org/zoomcar/zcui)
 [![Travis-ci](https://img.shields.io/travis/ZoomCar/zcui.svg?style=flat-square)](https://travis-ci.org/ZoomCar/zcui)
 [![Coverage Status](https://img.shields.io/coveralls/hamidraza/zcui.svg?style=flat-square)](https://coveralls.io/github/hamidraza/zcui?branch=master)
+[![CodeClimate](https://img.shields.io/codeclimate/github/ZoomCar/zcui.svg?style=flat-square)](https://codeclimate.com/github/ZoomCar/zcui)
 ---
 
 
