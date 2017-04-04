@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && cross-env NODE_ENV=test tap __tests__/*.js __tests__/*/*.js __tests__/*/*/*.js --cov",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "precommit": "npm run lint",
+    "prepush": "npm run test"
   },
   "bin": {
     "zcui": "index.js"
@@ -37,6 +39,7 @@
     "cross-env": "^3.2.4",
     "eslint": "^3.18.0",
     "find-root": "^1.0.0",
+    "husky": "^0.13.3",
     "ora": "^1.1.0",
     "shelljs": "^0.7.7",
     "tap": "^10.3.0",
