@@ -8,7 +8,7 @@ const zcui = `node ${path.resolve(__dirname, '../../../index.js')} create compon
 const testProjPath = path.resolve(__dirname, '../../../temp/test-proj');
 
 /*
- * hello-world was project created
+ * hello-world project was created
  * in new command testing
  */
 shell.cd(path.join(testProjPath, 'hello-world'));
