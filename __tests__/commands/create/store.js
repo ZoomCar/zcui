@@ -1,6 +1,7 @@
 const tap = require('tap');
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
 
 const test = tap.test;
 const zcui = `node ${path.resolve(__dirname, '../../../index.js')} create store`;
@@ -70,3 +71,34 @@ test("CREATE_STORE: error on duplicate", t => {
   });
 });
 
+test("STORE_CONTENT: store.js", t => {
+  t.equal(fs.readFileSync('src/store/modules/user.js', 'utf-8').trim(), `
+/* @flow */
+
+class UserState {
+  constructor() {
+    this.name = 'User'
+  }
+}
+
+export default {
+  state: new UserState
+};
+  `.trim());
+  t.end();
+});
+
+test("STORE_CONTENT: __tests__/module.spec.js", t => {
+  t.equal(fs.readFileSync('src/store/modules/__tests__/user.spec.js', 'utf-8').trim(), `
+/* @flow */
+
+import UserStore from '../user';
+
+test('UserStore name', () => {
+  expect(UserStore.state.name).toBe('User');
+});
+
+/** Write your test cases here **/
+  `.trim());
+  t.end();
+});
