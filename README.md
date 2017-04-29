@@ -7,14 +7,13 @@
 [![Coverage Status](https://img.shields.io/coveralls/hamidraza/zcui.svg?style=flat-square)](https://coveralls.io/github/hamidraza/zcui?branch=master)
 [![CodeClimate](https://img.shields.io/codeclimate/github/ZoomCar/zcui.svg?style=flat-square)](https://codeclimate.com/github/ZoomCar/zcui)
 [![Codacy grade](https://img.shields.io/codacy/grade/ecf827bd9c5b417981b102dcf74e1e54.svg?style=flat-square)](https://www.codacy.com/app/hamidraza/zcui/dashboard)
+[![Greenkeeper badge](https://badges.greenkeeper.io/hamidraza/zcui.svg)](https://greenkeeper.io/)
 <br><br>
 
 
 
 # Getting started
 ### Prerequisites
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/hamidraza/zcui.svg)](https://greenkeeper.io/)
 <br>
 
 #### Node
