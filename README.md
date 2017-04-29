@@ -13,6 +13,8 @@
 
 # Getting started
 ### Prerequisites
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/hamidraza/zcui.svg)](https://greenkeeper.io/)
 <br>
 
 #### Node
