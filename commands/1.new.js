@@ -62,7 +62,7 @@ exports.handler = argv => {
   /**
    * Clone the corresponding variant into the given folder
    **/
-  shell.exec(`git clone -b ${variants[argv.target].git.branch} ${variants[argv.target].git.url} ${app.param} -q`, code => {
+  shell.exec(`git clone --depth 1 -b ${variants[argv.target].git.branch} ${variants[argv.target].git.url} ${app.param} -q`, code => {
     if (code !== 0) {
       spinner.fail('Error! Try again');
       shell.exit(1);
