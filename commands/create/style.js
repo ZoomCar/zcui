@@ -47,7 +47,7 @@ exports.handler = argv => {
   const partialToImport = shell.ls(styleDir).filter(styleFile => {
     return !(styleFile == '_index.scss' || !scssFileRegx.test(styleFile));
   }).map(styleFile => {
-    return styleFile.replace(/^\_/, '').replace(scssFileRegx, '');
+    return styleFile.replace(/^_/, '').replace(scssFileRegx, '');
   });
 
   const importStr = partialToImport.map(m => {
