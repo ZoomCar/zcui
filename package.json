@@ -41,7 +41,7 @@
     "find-root": "^1.0.0",
     "husky": "^0.14.0",
     "ora": "^2.0.0",
-    "shelljs": "^0.7.7",
+    "shelljs": "^0.8.1",
     "tap": "^11.0.1",
     "validate-commit-msg": "^2.12.0",
     "yargs": "^10.0.3",
