@@ -20,23 +20,25 @@ test("shows help on create --help", t => {
 
   shell.exec(`${zcui} --help`, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create <type>
+    t.equal(stdout.trim(), `index.js create <type>
+
+Create new component/page/layout etc
 
 Commands:
-  component <name>  create new component
-  helper <name>     create new helper
-  layout <name>     create new layout
-  page <name>       create new page
-  store <name>      create new store
-  style <name>      create new style
+  index.js create component <name>  create new component
+  index.js create helper <name>     create new helper
+  index.js create layout <name>     create new layout
+  index.js create page <name>       create new page
+  index.js create store <name>      create new store
+  index.js create style <name>      create new style
 
 App Options:
   -h, --help     Show help                                             [boolean]
   -v, --version  Show version number                                   [boolean]
 
 Examples:
-  ../../../index.js create component Calendar
-  ../../../index.js create page Home --layout Default
+  index.js create component Calendar
+  index.js create page Home --layout Default
   etc...`);
     t.end();
   });

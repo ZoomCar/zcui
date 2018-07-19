@@ -16,14 +16,16 @@ test("CREATE_STYLE: Shows help on --help", t => {
   const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create style <name>
+    t.equal(stdout.trim(), `index.js create style <name>
+
+create new style
 
 Options:
   -v, --version  Show version number                                   [boolean]
   -h, --help     Show help                                             [boolean]
 
 Examples:
-  ../../../index.js create style button
+  index.js create style button
     `.trim());
     t.end();
   });

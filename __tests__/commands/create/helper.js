@@ -17,14 +17,16 @@ test("CREATE_HELPER: Shows help on --help", t => {
   const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create helper <name>
+    t.equal(stdout.trim(), `index.js create helper <name>
+
+create new helper
 
 Options:
   -v, --version  Show version number                                   [boolean]
   -h, --help     Show help                                             [boolean]
 
 Examples:
-  ../../../index.js create helper Date
+  index.js create helper Date
     `.trim());
     t.end();
   });
