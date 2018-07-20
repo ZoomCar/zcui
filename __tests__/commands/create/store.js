@@ -17,14 +17,16 @@ test("CREATE_STORE: Shows help on --help", t => {
   const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create store <name>
+    t.equal(stdout.trim(), `index.js create store <name>
+
+create new store
 
 Options:
   -v, --version  Show version number                                   [boolean]
   -h, --help     Show help                                             [boolean]
 
 Examples:
-  ../../../index.js create store User
+  index.js create store User
     `.trim());
     t.end();
   });

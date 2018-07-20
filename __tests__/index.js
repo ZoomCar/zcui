@@ -11,8 +11,9 @@ test("shows help on --help", function(t) {
     t.equal(stdout, `Usage: index.js <command> [options]
 
 Commands:
-  new <app>      Initialize new app                           [aliases: n, init]
-  create <type>  Create new component/page/layout etc  [aliases: generate, c, g]
+  index.js new <app>      Initialize new app                  [aliases: n, init]
+  index.js create <type>  Create new component/page/layout etc
+                                                       [aliases: generate, c, g]
 
 App Options:
   -h, --help     Show help                                             [boolean]
@@ -23,7 +24,6 @@ Examples:
   index.js create component Calendar
 
 for more information, find our manual at https://zoomcar.github.io/zcui/
-
 `);
     t.end();
   });

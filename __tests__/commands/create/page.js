@@ -24,7 +24,9 @@ test("CREATE_PAGE: Shows help on --help", t => {
 
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create page <name>
+    t.equal(stdout.trim(), `index.js create page <name>
+
+create new page
 
 Options:
   --layout, -l   layout for the page        [string] [required] [choices: false]
@@ -32,10 +34,8 @@ Options:
   -h, --help     Show help                                             [boolean]
 
 Examples:
-  ../../../index.js create page Home --layout default # for page with layout
-  default
-  ../../../index.js create page Home --no-layout      # for page without any
-  layout
+  index.js create page Home --layout default # for page with layout default
+  index.js create page Home --no-layout      # for page without any layout
     `.trim());
     t.end();
   });

@@ -1,5 +1,14 @@
-import ${name.pascal} from './${name.param}';
+import { shallowMount } from '@vue/test-utils';
+import ${name.pascal} from './${name.param}.vue';
 
-test('${name.pascal} name', () => {
-  expect(${name.pascal}.name).toBe('${name.param}');
+describe('${name.pascal}', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(${name.pascal});
+  });
+
+  it('has component className', () => {
+    expect(wrapper.classes()).toContain('component-${name.param}');
+  });
 });

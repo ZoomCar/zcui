@@ -7,10 +7,12 @@ const zcui = `node ${path.resolve(__dirname, '../../index.js')} new`;
 const testProjPath = path.resolve(__dirname, '../../temp/test-proj');
 
 test("Shows help on new --help", t => {
-  const command = `${zcui}  --help`;
+  const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
     t.equal(stdout.trim(), `index.js new <app>
+
+Initialize new app
 
 App Options:
   -h, --help     Show help                                             [boolean]
@@ -69,7 +71,8 @@ test("Create project without dependencies", t => {
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 1) t.fail();
-    t.equal(stderr.trim(), `✔ Completed.....You are good to go!
+    t.equal(stderr.trim(), `- Fetching the zcui-vue variant...
+✔ Completed.....You are good to go!
   Project hello-world created.
 
   >_ [RUN]

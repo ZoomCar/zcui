@@ -10,4 +10,3 @@ import './${name.param}.scss';
 import ${name.pascal}Layout from './${name.param}';
 export default ${name.pascal}Layout;
 </script>
-

@@ -17,14 +17,16 @@ test("CREATE_COMPONENT: Shows help on --help", t => {
   const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create component <name>
+    t.equal(stdout.trim(), `index.js create component <name>
+
+create new component
 
 Options:
   -v, --version  Show version number                                   [boolean]
   -h, --help     Show help                                             [boolean]
 
 Examples:
-  ../../../index.js create component zc-calendar
+  index.js create component zc-calendar
     `.trim());
     t.end();
   });

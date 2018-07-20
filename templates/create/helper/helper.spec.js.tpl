@@ -1,5 +1,3 @@
-/* @flow */
-
 import ${name.pascal}Helper from '../${name.param}';
 
 test('${name.pascal}Helper newHelper', () => {

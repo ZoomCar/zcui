@@ -17,14 +17,16 @@ test("CREATE_LAYOUT: Shows help on --help", t => {
   const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `../../../index.js create layout <name>
+    t.equal(stdout.trim(), `index.js create layout <name>
+
+create new layout
 
 Options:
   -v, --version  Show version number                                   [boolean]
   -h, --help     Show help                                             [boolean]
 
 Examples:
-  ../../../index.js create layout Primary
+  index.js create layout Primary
     `.trim());
     t.end();
   });
