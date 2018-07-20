@@ -1,5 +1,14 @@
-import ${name.pascal}Layout from './${name.param}';
+import { shallowMount } from '@vue/test-utils';
+import ${name.pascal}Layout from './${name.param}.vue';
 
-test('${name.pascal}Layout name', () => {
-  expect(${name.pascal}Layout.name).toBe('layout-${name.param}');
+describe('${name.pascal}Layout', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(${name.pascal}Layout);
+  });
+
+  it('has layout className', () => {
+    expect(wrapper.classes()).toContain('layout-${name.param}');
+  });
 });
