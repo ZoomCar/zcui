@@ -7,6 +7,10 @@ const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
 
+const PWD = getProjectRoot();
+
+const AppConfig = require(path.join(PWD, '.zcui/config.js'));
+
 exports.command  = 'helper <name>';
 exports.desc     = 'create new helper';
 
@@ -15,7 +19,7 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = getProjectRoot();
+  const zcuiDir = path.join(PWD, '.zcui');
   const name = {
     default: argv.name,
     param  : changeCase.paramCase(argv.name),
@@ -23,7 +27,7 @@ exports.handler = argv => {
     camel  : changeCase.camelCase(argv.name)
   };
 
-  const helperDir = path.join(pwd, 'src/helpers');
+  const helperDir = path.join(PWD, AppConfig.path.helpers);
   if(!shell.test('-d', helperDir)) shell.mkdir('-p', helperDir);
 
   const specDir = path.join(helperDir, '__tests__');
@@ -36,7 +40,8 @@ exports.handler = argv => {
     shell.exit(1);
   }
 
-  const tplDir = path.resolve(__dirname, '../..', 'templates/create/helper');
+  const tplDir = path.resolve(zcuiDir, 'templates/create/helper');
+  // const tplDir = path.resolve(__dirname, '../..', 'templates/create/helper');
   const tplFilePath = path.resolve(tplDir, 'helper.js.tpl');
   const tplSpecPath = path.resolve(tplDir, 'helper.spec.js.tpl');
 

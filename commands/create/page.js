@@ -7,12 +7,15 @@ const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
 
+const PWD = getProjectRoot();
+
+const AppConfig = require(path.join(PWD, '.zcui/config.js'));
+
 exports.command  = 'page <name>';
 exports.desc     = 'create new page';
 
 exports.builder = yargs => {
-  const pwd = getProjectRoot();
-  const layoutDir = path.join(pwd, 'src/layouts');
+  const layoutDir = path.join(PWD, AppConfig.path.layouts);
   const availableLayouts = shell.test('-d', layoutDir) ? shell.ls('-l', layoutDir)
     .filter(l => shell.test('-d', path.join(layoutDir, l.name)) )
     .map(l => l.name) : [];
@@ -32,8 +35,8 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = getProjectRoot();
-  const componentsDir = path.join(pwd, 'src/pages');
+  const zcuiDir = path.join(PWD, '.zcui');
+  const componentsDir = path.join(PWD, AppConfig.path.pages);
 
   if (!shell.test('-d', componentsDir)) {
     shell.mkdir('-p', componentsDir);
@@ -60,7 +63,7 @@ exports.handler = argv => {
   }
   shell.mkdir('-p', componentPath);
 
-  const templateDir = path.resolve(__dirname, '../..', 'templates/create/page');
+  const templateDir = path.resolve(zcuiDir, 'templates/create/page');
   shell.ls(templateDir).forEach(tpl => {
     const fileName = tpl.replace(/^(page)/, name.param).replace(/(\.tpl)$/, '');
     const tplPath = path.resolve(templateDir, tpl);

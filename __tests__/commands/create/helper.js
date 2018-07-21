@@ -94,8 +94,6 @@ export default {
 
 test("HELPER_CONTENT: __tests__/helper.spec.js", t => {
   t.equal(fs.readFileSync('src/helpers/__tests__/date.spec.js', 'utf-8').trim(), `
-/* @flow */
-
 import DateHelper from '../date';
 
 test('DateHelper newHelper', () => {

@@ -7,6 +7,10 @@ const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
 
+const PWD = getProjectRoot();
+
+const AppConfig = require(path.join(PWD, '.zcui/config.js'));
+
 exports.command  = 'style <name>';
 exports.desc     = 'create new style';
 
@@ -15,7 +19,6 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = getProjectRoot();
   const name = {
     default: argv.name,
     param  : changeCase.paramCase(argv.name),
@@ -23,7 +26,7 @@ exports.handler = argv => {
     camel  : changeCase.camelCase(argv.name)
   };
 
-  const styleDir = path.join(pwd, 'src/styles/partials');
+  const styleDir = path.join(PWD, AppConfig.path.styles, 'partials');
   if(!shell.test('-d', styleDir)) shell.mkdir('-p', styleDir);
 
   const filePath = path.join(styleDir, `_${name.param}.scss`);
@@ -32,7 +35,8 @@ exports.handler = argv => {
     shell.exit(1);
   }
 
-  const tplDir = path.resolve(__dirname, '../..', 'templates/create/style');
+  const zcuiDir = path.join(PWD, '.zcui');
+  const tplDir = path.resolve(zcuiDir, 'templates/create/style');
   const tplFilePath = path.resolve(tplDir, '_style.scss.tpl');
 
   const tplFileContent = fs.readFileSync(tplFilePath, 'utf8');

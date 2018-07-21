@@ -80,7 +80,7 @@ exports.handler = argv => {
     shell.cp(path.resolve(pwd.stdout, '.env.example'), path.join(pwd.stdout, '.env'));
     shell.mkdir('-p', path.join(pwd.stdout, 'public/build'));
 
-    shell.exec('git add . && git commit -m "zcui: Initial commit"', {silent: true});
+    shell.exec('git add . && git commit -m "feat(ZcUI): Initial commit"', {silent: true});
 
     if(argv.dependencies) {
       spinner.text = 'Installing dependencies...';
