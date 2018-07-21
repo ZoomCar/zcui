@@ -85,8 +85,7 @@ exports.handler = argv => {
     if(argv.dependencies) {
       spinner.text = 'Installing dependencies...';
 
-      // ${shell.which('yarn') ? 'yarn':'npm'} install
-      shell.exec(`ls`, {silent: true, async:true}, code => {
+      shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
         if (code !== 0) {
           spinner.fail('Error! Try installing dependencies manually.');
           shell.exit(1);
