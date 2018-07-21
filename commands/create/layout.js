@@ -7,6 +7,10 @@ const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
 
+const PWD = getProjectRoot();
+
+const AppConfig = require(path.join(PWD, '.zcui/config.js'));
+
 exports.command  = 'layout <name>';
 exports.desc     = 'create new layout';
 
@@ -15,8 +19,8 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = getProjectRoot();
-  const componentsDir = path.join(pwd, 'src/layouts');
+  const zcuiDir = path.join(PWD, '.zcui');
+  const componentsDir = path.join(PWD, AppConfig.path.layouts);
 
   if (!shell.test('-d', componentsDir)) {
     shell.mkdir('-p', componentsDir);
@@ -36,7 +40,7 @@ exports.handler = argv => {
   }
   shell.mkdir('-p', componentPath);
 
-  const templateDir = path.resolve(__dirname, '../..', 'templates/create/layout');
+  const templateDir = path.resolve(zcuiDir, 'templates/create/layout');
   shell.ls(templateDir).forEach(tpl => {
     const fileName = tpl.replace(/^(layout)/, name.param).replace(/(\.tpl)$/, '');
     const tplPath = path.resolve(templateDir, tpl);

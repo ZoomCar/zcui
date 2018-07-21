@@ -129,10 +129,19 @@ test("LAYOUT_CONTENT: layout.scss", t => {
 
 test("LAYOUT_CONTENT: component.spec.js", t => {
   t.equal(fs.readFileSync('src/layouts/default/default.spec.js', 'utf-8').trim(), `
-import DefaultLayout from './default';
+import { shallowMount } from '@vue/test-utils';
+import DefaultLayout from './default.vue';
 
-test('DefaultLayout name', () => {
-  expect(DefaultLayout.name).toBe('layout-default');
+describe('DefaultLayout', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(DefaultLayout);
+  });
+
+  it('has layout className', () => {
+    expect(wrapper.classes()).toContain('layout-default');
+  });
 });
   `.trim());
   t.end();

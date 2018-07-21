@@ -79,7 +79,8 @@ test("Create project without dependencies", t => {
   $ cd hello-world
   $ npm install   # to install dependencies
   $ npm run dev   # to start dev server
-  $ npm run prod  # to build for production`);
+  $ npm run prod  # to build for production
+`.trim());
     t.end();
   });
 });
@@ -96,7 +97,8 @@ test("Create project", t => {
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 1) t.fail();
-    t.equal(stderr.trim(), `✔ Completed.....You are good to go!
+    t.equal(stderr.trim(), `- Fetching the zcui-vue variant...
+✔ Completed.....You are good to go!
   Project hello-world created.
 
   >_ [RUN]

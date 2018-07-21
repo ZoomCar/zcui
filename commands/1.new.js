@@ -80,12 +80,13 @@ exports.handler = argv => {
     shell.cp(path.resolve(pwd.stdout, '.env.example'), path.join(pwd.stdout, '.env'));
     shell.mkdir('-p', path.join(pwd.stdout, 'public/build'));
 
-    shell.exec('git add . && git commit -m "zcui: Initial commit"', {silent: true});
+    shell.exec('git add . && git commit -m "feat(ZcUI): Initial commit"', {silent: true});
 
     if(argv.dependencies) {
       spinner.text = 'Installing dependencies...';
 
-      shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
+      // ${shell.which('yarn') ? 'yarn':'npm'} install
+      shell.exec(`ls`, {silent: true, async:true}, code => {
         if (code !== 0) {
           spinner.fail('Error! Try installing dependencies manually.');
           shell.exit(1);

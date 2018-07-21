@@ -76,15 +76,33 @@ test("CREATE_STORE: error on duplicate", t => {
 test("STORE_CONTENT: store.js", t => {
   t.equal(fs.readFileSync('src/store/modules/user.js', 'utf-8').trim(), `
 /* @flow */
+type UserState = {
+  name: string,
+};
 
-class UserState {
-  constructor() {
-    this.name = 'User'
-  }
-}
+type actionArg = {
+  commit: (string) => void,
+};
+
+export const state: UserState = {
+  name: 'User',
+};
+
+export const mutations = {
+  updateName: (state: UserState) => {
+    state.name = "User-updated";
+  },
+};
+
+export const actions = {
+  updateName: (act: actionArg) => act.commit('updateName'),
+};
 
 export default {
-  state: new UserState
+  namespaced: true,
+  state,
+  mutations,
+  actions,
 };
   `.trim());
   t.end();
@@ -92,15 +110,35 @@ export default {
 
 test("STORE_CONTENT: __tests__/module.spec.js", t => {
   t.equal(fs.readFileSync('src/store/modules/__tests__/user.spec.js', 'utf-8').trim(), `
-/* @flow */
-
-import UserStore from '../user';
-
-test('UserStore name', () => {
-  expect(UserStore.state.name).toBe('User');
-});
+import {
+  mutations,
+  // actions,
+  state
+} from '../user';
 
 /** Write your test cases here **/
+
+describe('UserModule', () => {
+
+  /* Test all mutations here */
+  describe('mutation', () => {
+
+    it('default name', () => {
+      expect(state.name).toBe('User');
+    });
+
+    it('name after mutation', () => {
+      mutations.updateName(state);
+      expect(state.name).toBe('User-updated');
+    });
+
+  });
+
+  /* Test all actions here */
+  describe('actions', () => {
+  });
+
+});
   `.trim());
   t.end();
 });

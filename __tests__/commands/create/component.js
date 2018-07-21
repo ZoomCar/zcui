@@ -127,10 +127,19 @@ test("COMPONENT_CONTENT: component.scss", t => {
 
 test("COMPONENT_CONTENT: component.spec.js", t => {
   t.equal(fs.readFileSync('src/components/zc-calendar/zc-calendar.spec.js', 'utf-8').trim(), `
-import ZcCalendar from './zc-calendar';
+import { shallowMount } from '@vue/test-utils';
+import ZcCalendar from './zc-calendar.vue';
 
-test('ZcCalendar name', () => {
-  expect(ZcCalendar.name).toBe('zc-calendar');
+describe('ZcCalendar', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(ZcCalendar);
+  });
+
+  it('has component className', () => {
+    expect(wrapper.classes()).toContain('component-zc-calendar');
+  });
 });
   `.trim());
   t.end();

@@ -7,6 +7,10 @@ const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
 
+const PWD = getProjectRoot();
+
+const AppConfig = require(path.join(PWD, '.zcui/config.js'));
+
 exports.command  = 'store <name>';
 exports.desc     = 'create new store';
 
@@ -15,7 +19,6 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = getProjectRoot();
   const name = {
     default: argv.name,
     param  : changeCase.paramCase(argv.name),
@@ -23,7 +26,7 @@ exports.handler = argv => {
     camel  : changeCase.camelCase(argv.name)
   };
 
-  const storeDir = path.join(pwd, 'src/store');
+  const storeDir = path.join(PWD, AppConfig.path.store);
   const moduleDir = path.join(storeDir, 'modules');
   if(!shell.test('-d', moduleDir)) shell.mkdir('-p', moduleDir);
 
@@ -37,7 +40,8 @@ exports.handler = argv => {
     shell.exit(1);
   }
 
-  const tplDir = path.resolve(__dirname, '../..', 'templates/create/store');
+  const zcuiDir = path.join(PWD, '.zcui');
+  const tplDir = path.resolve(zcuiDir, 'templates/create/store');
   const tplFilePath = path.resolve(tplDir, 'module.js.tpl');
   const tplSpecPath = path.resolve(tplDir, 'module.spec.js.tpl');
 

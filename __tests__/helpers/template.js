@@ -8,4 +8,3 @@ test("TEMPLATE_evalTemplate: parse string", t => {
   t.equal(result, 'Hello, World');
   t.end();
 });
-

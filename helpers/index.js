@@ -16,22 +16,15 @@ module.exports = {
     if(!projectRoot) return null;
 
     /*
-     * Check if project has package.json and
-     * contains zcui and zcui.variant key
+     * Check if project has .zcui dir and
+     * contains config file
      */
     try{
-      let pkgFile = path.resolve(projectRoot, 'package.json');
-      let pkgContent = fs.readFileSync(pkgFile);
-      let pkg = JSON.parse(pkgContent);
-      if(!pkg.zcui || !pkg.zcui.variant) {
-        return null;
-      }
+      const configFile = path.resolve(projectRoot, '.zcui/config.js');
+      return fs.existsSync(configFile) ? projectRoot : null;
     } catch(e) {
       // TODO: handle exception
       return null;
     }
-
-    return projectRoot;
   }
 };
-

@@ -7,6 +7,10 @@ const {evalTemplate} = require('../../helpers/template');
 const logSymbols = require('../../helpers/log-symbols.js');
 const {getProjectRoot} = require('../../helpers');
 
+const PWD = getProjectRoot();
+
+const AppConfig = require(path.join(PWD, '.zcui/config.js'));
+
 exports.command  = 'component <name>';
 exports.desc     = 'create new component';
 
@@ -15,8 +19,9 @@ exports.builder = yargs => {
 };
 
 exports.handler = argv => {
-  const pwd = getProjectRoot();
-  const componentsDir = path.join(pwd, 'src/components');
+  const zcuiDir = path.join(PWD, '.zcui');
+  const templateDir = path.resolve(zcuiDir, 'templates/create/component');
+  const componentsDir = path.join(PWD, AppConfig.path.components);
 
   if (!shell.test('-d', componentsDir)) {
     shell.mkdir('-p', componentsDir);
@@ -36,7 +41,6 @@ exports.handler = argv => {
   }
   shell.mkdir('-p', componentPath);
 
-  const templateDir = path.resolve(__dirname, '../..', 'templates/create/component');
   shell.ls(templateDir).forEach(tpl => {
     const fileName = tpl.replace(/^(component)/, name.param).replace(/(\.tpl)$/, '');
     const tplPath = path.resolve(templateDir, tpl);
