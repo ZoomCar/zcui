@@ -3,7 +3,7 @@
 [![NPM license](http://img.shields.io/npm/l/zcui.svg?style=flat-square)](https://github.com/ZoomCar/zcui/blob/master/LICENSE)
 [![issues](https://img.shields.io/github/issues/zoomcar/zcui.svg?style=flat-square)](https://github.com/ZoomCar/zcui/issues)
 [![Dependencies](https://david-dm.org/zoomcar/zcui/status.svg?style=flat-square)](https://david-dm.org/zoomcar/zcui)
-[![Travis-ci](https://img.shields.io/travis/ZoomCar/zcui.svg?style=flat-square)](https://travis-ci.org/ZoomCar/zcui)
+[![Travis-ci](https://img.shields.io/travis/hamidraza/zcui.svg?style=flat-square)](https://travis-ci.org/hamidraza/zcui)
 [![Coverage Status](https://img.shields.io/coveralls/hamidraza/zcui.svg?style=flat-square)](https://coveralls.io/github/hamidraza/zcui?branch=master)
 [![CodeClimate](https://img.shields.io/codeclimate/github/ZoomCar/zcui.svg?style=flat-square)](https://codeclimate.com/github/ZoomCar/zcui)
 [![Codacy grade](https://img.shields.io/codacy/grade/ecf827bd9c5b417981b102dcf74e1e54.svg?style=flat-square)](https://www.codacy.com/app/hamidraza/zcui/dashboard)
