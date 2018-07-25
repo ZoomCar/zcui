@@ -4,7 +4,7 @@
     "description": "Vuejs variant for zcui",
     "git": {
       "url": "https://github.com/hamidraza/zcui-vue.git",
-      "branch": "master"
+      "branch": "v2"
     }
   },
   "vue-pwa": {
@@ -12,7 +12,7 @@
     "description": "Vuejs variant for zcui with basic PWA support",
     "git": {
       "url": "https://github.com/hamidraza/zcui-vue-pwa.git",
-      "branch": "master"
+      "branch": "v2"
     }
   }
 }
