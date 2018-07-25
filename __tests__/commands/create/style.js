@@ -1,10 +1,16 @@
 const tap = require('tap');
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
 
 const test = tap.test;
 const zcui = `node ${path.resolve(__dirname, '../../../index.js')} create style`;
 const testProjPath = path.resolve(__dirname, '../../../temp/test-proj');
+
+const styleName = 'button';
+const styleFiles = [
+  `src/styles/partials/_${styleName}.scss`,
+];
 
 /*
  * hello-world was project created
@@ -16,23 +22,13 @@ test("CREATE_STYLE: Shows help on --help", t => {
   const command = `${zcui} --help`;
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `index.js create style <name>
-
-create new style
-
-Options:
-  -v, --version  Show version number                                   [boolean]
-  -h, --help     Show help                                             [boolean]
-
-Examples:
-  index.js create style button
-    `.trim());
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
 
 test("CREATE_STYLE: success", t => {
-  const command = `${zcui} button`;
+  const command = `${zcui} ${styleName}`;
 
   /**
    * Cleanup button style partial
@@ -41,7 +37,7 @@ test("CREATE_STYLE: success", t => {
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 1) t.fail(stderr);
-    t.equal(stdout.trim(), `✔ button Style _partial created`.trim());
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
@@ -53,12 +49,14 @@ test("CREATE_STYLE: has style files", t => {
    * button style partial created in previous test
    */
   t.ok(shell.test('-f', 'src/styles/partials/_index.scss'));
-  t.ok(shell.test('-f', 'src/styles/partials/_button.scss'));
+  styleFiles.forEach(file => {
+    t.ok(shell.test('-f', file));
+  });
   t.end();
 });
 
 test("CREATE_STYLE: error on duplicate", t => {
-  const command = `${zcui} button`;
+  const command = `${zcui} ${styleName}`;
 
   /**
    * Don not remove button style partial
@@ -67,8 +65,14 @@ test("CREATE_STYLE: error on duplicate", t => {
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 0) t.fail(stderr);
-    t.equal(stdout.trim(), '✖ button style already exits! Please choose some another name!!!');
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
 
+styleFiles.forEach(file => {
+  test(`STYLE_CONTENT: ${file}`, t => {
+    t.matchSnapshot(fs.readFileSync(file, 'utf-8'), 'output');
+    t.end();
+  });
+});

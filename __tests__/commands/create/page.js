@@ -1,11 +1,21 @@
 const tap = require('tap');
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
 
 const test = tap.test;
 const zcuiCli = `node ${path.resolve(__dirname, '../../../index.js')}`;
 const zcui = `${zcuiCli} create page`;
 const testProjPath = path.resolve(__dirname, '../../../temp/test-proj');
+
+const pageName = 'home';
+const pageFiles = [
+  `src/pages/${pageName}/index.js`,
+  `src/pages/${pageName}/${pageName}.js`,
+  `src/pages/${pageName}/${pageName}.vue`,
+  `src/pages/${pageName}/${pageName}.scss`,
+  `src/pages/${pageName}/${pageName}.spec.js`,
+];
 
 /*
  * hello-world was project created
@@ -24,87 +34,67 @@ test("CREATE_PAGE: Shows help on --help", t => {
 
   shell.exec(command, {silent:true}, (code, stdout) => {
     if(code === 1) t.fail();
-    t.equal(stdout.trim(), `index.js create page <name>
-
-create new page
-
-Options:
-  --layout, -l   layout for the page        [string] [required] [choices: false]
-  -v, --version  Show version number                                   [boolean]
-  -h, --help     Show help                                             [boolean]
-
-Examples:
-  index.js create page Home --layout default # for page with layout default
-  index.js create page Home --no-layout      # for page without any layout
-    `.trim());
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
 
 test("CREATE_PAGE: error without layout", t => {
-  const command = `${zcui} home`;
+  const command = `${zcui} ${pageName}`;
 
   /**
    * Cleanup home page
    */
-  shell.rm('-rf', 'src/pages/home', {silent: true});
+  shell.rm('-rf', `src/pages/${pageName}`, {silent: true});
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 0) t.fail(stdout);
-    t.equal(stderr.trim(), `Missing required argument: layout`.trim());
+    t.matchSnapshot(stderr, 'output');
     t.end();
   });
 });
 
 test("CREATE_PAGE: error on empty layout name", t => {
-  const command = `${zcui} home -l`;
+  const command = `${zcui} ${pageName} -l`;
 
   /**
    * Cleanup home page
    */
-  shell.rm('-rf', 'src/pages/home', {silent: true});
+  shell.rm('-rf', `src/pages/${pageName}`, {silent: true});
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 0) t.fail(stdout);
-    t.equal(stderr.trim(), `Invalid values:
-  Argument: layout, Given: "", Choices: false
-`.trim());
+    t.matchSnapshot(stderr, 'output');
     t.end();
   });
 });
 
 test("CREATE_PAGE: error on invalid layout", t => {
-  const command = `${zcui} home -l invalid`;
+  const command = `${zcui} ${pageName} -l invalid`;
 
   /**
    * Cleanup home page
    */
-  shell.rm('-rf', 'src/pages/home', {silent: true});
+  shell.rm('-rf', `src/pages/${pageName}`, {silent: true});
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 0) t.fail(stdout);
-    t.equal(stderr.trim(), `Invalid values:
-  Argument: layout, Given: "invalid", Choices: false
-`.trim());
+    t.matchSnapshot(stderr, 'output');
     t.end();
   });
 });
 
 test("CREATE_PAGE: success without layout", t => {
-  const command = `${zcui} home --no-layout`;
+  const command = `${zcui} ${pageName} --no-layout`;
 
   /**
    * Cleanup home page
    */
-  shell.rm('-rf', 'src/pages/home', {silent: true});
+  shell.rm('-rf', `src/pages/${pageName}`, {silent: true});
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 1) t.fail(stderr);
-    t.equal(stdout.trim(), `✔ home Page created
-
-  Use:
-  import Home from '~/pages/home';
-`.trim());
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
@@ -113,21 +103,17 @@ test("CREATE_PAGE: success with layout", t => {
   /**
    * Cleanup home page
    */
-  shell.rm('-rf', 'src/pages/home', {silent: true});
+  shell.rm('-rf', `src/pages/${pageName}`, {silent: true});
 
   /**
    * Create a layout to use
    */
   shell.exec(`${zcuiCli} create layout default`, {silent: true});
 
-  const command = `${zcui} home -l default`;
+  const command = `${zcui} ${pageName} -l default`;
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 1) t.fail(stderr);
-    t.equal(stdout.trim(), `✔ home Page created
-
-  Use:
-  import Home from '~/pages/home';
-`.trim());
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
@@ -138,15 +124,14 @@ test("CREATE_PAGE: has component files", t => {
    * Don not remove home page
    * home page created in previous test
    */
-  t.ok(shell.test('-f', 'src/pages/home/index.js'));
-  t.ok(shell.test('-f', 'src/pages/home/home.js'));
-  t.ok(shell.test('-f', 'src/pages/home/home.vue'));
-  t.ok(shell.test('-f', 'src/pages/home/home.scss'));
+  pageFiles.forEach(file => {
+    t.ok(shell.test('-f',file));
+  });
   t.end();
 });
 
 test("CREATE_PAGE: error on duplicate", t => {
-  const command = `${zcui} home --no-layout`;
+  const command = `${zcui} ${pageName} --no-layout`;
 
   /**
    * Don not remove home page
@@ -155,8 +140,14 @@ test("CREATE_PAGE: error on duplicate", t => {
 
   shell.exec(command, {silent:true}, (code, stdout, stderr) => {
     if(code === 0) t.fail(stderr);
-    t.equal(stdout.trim(), '✖ home page already exits! Please choose some another name!!!');
+    t.matchSnapshot(stdout, 'output');
     t.end();
   });
 });
 
+pageFiles.forEach(file => {
+  test(`PAGE_CONTENT: ${file}`, t => {
+    t.matchSnapshot(fs.readFileSync(file, 'utf-8'), 'output');
+    t.end();
+  });
+});
