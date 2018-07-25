@@ -85,7 +85,12 @@ exports.handler = argv => {
     if(argv.dependencies) {
       spinner.text = 'Installing dependencies...';
 
-      shell.exec(`${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
+      /**
+       * When in test environment, no need to download node_modules
+       * its just unnecesary, as we don't test anything 
+       * related to build or test of zcui-variant projects, we just test this cli
+       */
+      shell.exec(process.env.NODE_ENV == 'test' ? 'ls' : `${shell.which('yarn') ? 'yarn':'npm'} install`, {silent: true, async:true}, code => {
         if (code !== 0) {
           spinner.fail('Error! Try installing dependencies manually.');
           shell.exit(1);
