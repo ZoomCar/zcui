@@ -1,6 +1,6 @@
 {
   "name": "zcui",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Command line tool to generate SPA/components",
   "main": "index.js",
   "scripts": {
